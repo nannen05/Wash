@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="x-ua-compatible" content="IE=Edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WashMe</title>
+  <link href='https://fonts.googleapis.com/css?family=Arimo:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Fira+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+</head>
+<body>
+<nav class="navbar wash-nav ">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="navbar-brand" ><a href="#">WashMe</a></div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Features</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Become a Detailer</a></li>
+        <li class="wash-nav-buttons"><a href="#">Log In</a></li>
+        <li class="wash-nav-buttons"><a href="#">Sign Up</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<section>
+  <div class="home-section">
+    <div class="container">
+      <div class="row" id="wash-container" data-wash-container="wash">
+        <div class="col-md-4 wash-type wash" id="washType1" data-wash-type="basic">
+          <div id="basic">
+            <h2>Basic</h2>
+            <h3>Exterior Only</h3>
+            <hr>
+            <ul>
+              <li>Exterior Wash</li>
+              <li>Tire and Wheel Shine</li>
+              <li>Interior & Vacuumm Cleaning</li>
+            </ul>
+            <a id="washType1" data-wash-type="Basic">Select</a>
+          </div>
+        </div>
+        <div class="col-md-4 wash-type wash" id="washType2" data-wash-type="super">
+          <div id="super">
+            <h2>Super</h2>
+            <h3>Exterior + Interior</h3>
+            <hr>
+            <ul>
+              <li>Exterior Wash</li>
+              <li>Tire and Wheel Shine</li>
+              <li>Interior & Vacuumm Cleaning</li>
+              <a id="washType2" data-wash-type="Super">Select</a>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4 wash-type wash" id="washType3"  data-wash-type="deluxe">
+          <div id="deluxe">
+            <h2>Deluxe</h2>
+            <h3>Exterior + Interior + Wax</h3>
+            <hr>
+            <ul>
+              <li>Exterior Wash</li>
+              <li>Tire and Wheel Shine</li>
+              <li>Interior & Vacuumm Cleaning</li>
+            </ul>
+            <a id="washType2" data-wash-type="Deluxe">Select</a>
+          </div>
+        </div>
+        </div><!-- Row -->
+        <div class="row" id="cities">
+          <div class="col-md-12">
+            <h1>Select City</h1>
+            <div id="selected-wash-type"></div>
+            <select id="locations">
+              <option value="Tustin">Tustin</option>
+              <option value="Irvine">Irvine</option>
+              <option value="Santa Ana">Santa Ana</option>
+              <option value="Costa Mesa">Costa Mesa</option>
+            </select>
+            <a id="selectedcity">Select</a>
+          </div>
+        </div><!-- End Cities Block -->
+      <div class="row" id="results">
+        <div class="col-md-12">
+          <h1>Results</h1>
+          <div id="start-results"></div>
+        </div>
+      </div><!-- End Results Block -->
+    </div><!-- Container -->
+  </div><!-- Home section -->
+</section>
+
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="main.js"></script>
+<script src="detailers.js"></script>
+<script>
+  $(document).ready(function() {
+    function setHeight() {
+      windowHeight = $(window).innerHeight();
+      //var windowHeightnav = windowHeight - 73;
+      var homeoverlay = (windowHeight/1.3);
+      $('.home-overlay').css('margin-top', homeoverlay)
+      $('.home-section').css('min-height', homeoverlay);
+    };
+    setHeight();
+
+    $(window).resize(function() {
+      setHeight();
+    });
+  });
+</script>
+</html>
