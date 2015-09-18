@@ -28,10 +28,10 @@ var Schema = mongoose.Schema
 
 
 var Detailer = new Schema({
-  first_name      : String,
-  basic_wash       : Number,
-  super_wash        : Number,
-  deluxe_wash         : Number
+  first_name : String,
+  basic_wash : Number,
+  super_wash : Number,
+  deluxe_wash : Number
   });
 
 
@@ -59,28 +59,6 @@ app.post('/add-detailers' ,jsonParser , function(request, response){
     }
   });
 });
-
-//app.get('/add-detailers/:firstname/:basic/:super/:deluxe', function(req, res){
-//  var detailer_data = {
-//    first_name: req.params.firstname,
-//    basic_wash: req.params.basic,
-//    super_wash: req.params.super,
-//    deluxe_wash: req.params.deluxe
-//  };
-//
-//  var detailer = new Detailer(detailer_data);
-//
-//  detailer.save( function(error, data){
-//    if(error){
-//      res.json(error);
-//    }
-//    else{
-//      res.json(data);
-//
-//    }
-//  });
-//});
-
 
 //Basic Routes
 
