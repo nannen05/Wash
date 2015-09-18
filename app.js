@@ -3,29 +3,21 @@ var app = express();
 var path = require('path');
 
 var bodyParser = require('body-parser');
-var morgan = require('morgan');
+
 var mongoose = require('mongoose');
-
-
 
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
 var jsonParser = bodyParser.json();
 
-//app.get('/detailers', function(req, res) {
-//  res.send(JSON.parse(body));
-//})
-
 // Connect Database
-mongoose.connect('mongodb://localhost:27017/db_test', function(err) {
+var db = mongoose.connect('mongodb://localhost:27017/db_test', function(err) {
   if (err) throw err;
   console.log('Ok');
 });
 
 var Schema = mongoose.Schema
-    , ObjectId = Schema.ObjectID;
-
 
 var Detailer = new Schema({
   first_name : String,
@@ -34,18 +26,18 @@ var Detailer = new Schema({
   deluxe_wash : Number
   });
 
-
 var Detailer = mongoose.model('Detailer', Detailer);
 
-app.post('/add-detailers' ,jsonParser , function(request, response){
-  response.setHeader('Content-Type', 'application/json');
-  console.log(request.body);
+app.post('/add-detailers' ,jsonParser , function(req, res){
+  res.setHeader('Content-Type', 'application/json');
+  console.log(req.body);
   var detailer_data = {
-    first_name: request.body.firstname
-    //basic_wash: request.body.basic,
-    //super_wash: request.body.super,
-    //deluxe_wash: request.params.deluxe
+    first_name: req.body.firstname,
+    basic_wash: req.body.basicwash,
+    super_wash: req.body.superwash,
+    deluxe_wash: req.body.deluxewash
   };
+  //console.log(detailer_data);
 
   var detailer = new Detailer(detailer_data);
 
@@ -57,6 +49,12 @@ app.post('/add-detailers' ,jsonParser , function(request, response){
       res.json(data);
 
     }
+  });
+});
+
+app.get('/show-detailers', function(req, res){
+  Detailer.find({}, function(error, data){
+    res.json(data);
   });
 });
 
@@ -75,5 +73,5 @@ app.use('/js' , express.static(__dirname + '/js'));
 app.use('/', express.static(__dirname + '/'));
 
 
-app.listen(1338);
-console.log('1338 is the magic port');
+app.listen(1339);
+console.log('1339 is the magic port');
