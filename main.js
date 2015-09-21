@@ -1,6 +1,3 @@
-var basic;// = 'Basic';
-var superWash;// = 'Super';
-var deluxe;// = 'Deluxe';
 var globalWashType;
 var globalCity;
 var results = document.getElementById('results');
@@ -34,7 +31,7 @@ function hideWashType(e){
   var textp = document.createElement('p');
   selectedWashType.appendChild(textp);
   textp.textContent = 'You Have Selected: ' + globalWashType;
-  window.location.hash = '#cites';
+  //window.location.hash = '#cites';
 }
 
 var cities = document.getElementById('cities');
@@ -65,77 +62,92 @@ selectedcity.addEventListener('click', function(e) {
 function buildResults() {
   var startResults = document.getElementById('start-results');
   startResults.className = 'result';
-  for (var i = 0; i < detailers.detailers.length; i++) {
+  //Request from DB
+  var xhr = new XMLHttpRequest;
+  xhr.open('GET', '/show-detailers', true);
+  xhr.setRequestHeader("Content-type","application/json");
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4) {
+      if (xhr.status == 200) {
+        var data = xhr.responseText;
+        var jsonResponse = JSON.parse(data);
+        console.log(data);
 
-    if (globalCity.value == detailers.detailers[i].city) {
+        for (var i = 0; i < jsonResponse.length; i++) {
 
-      // Detail Values from detaliers.js
-      var name = detailers.detailers[i].name;
-      var image = detailers.detailers[i].image;
-      var rating = detailers.detailers[i].rating;
-      var basic = detailers.detailers[i].basic;
-      var superwash = detailers.detailers[i].super;
-      var deluxe = detailers.detailers[i].deluxe;
-      var wash;
+          if (globalCity.value == jsonResponse[i].city) {
+            // Detail Values from db
+            var name = jsonResponse[i].first_name;
+            //var image = detailers.detailers[i].image;
+            var rating = jsonResponse[i].rating;
+            var basic = jsonResponse[i].basic_wash;
+            var superwash = jsonResponse[i].super_wash;
+            var deluxe = jsonResponse[i].deluxe_wash;
+            //var location = detailers.detailers[i].location[1];
+            var wash;
 
-      if(globalWashType == 'Basic')  {
-        wash = basic;
-      } else if (globalWashType == 'Super'){
-        wash = superwash;
-      } else if (globalWashType == 'Deluxe') {
-        wash = deluxe;
+            if(globalWashType == 'Basic')  {
+              wash = basic;
+            } else if (globalWashType == 'Super'){
+              wash = superwash;
+            } else if (globalWashType == 'Deluxe') {
+              wash = deluxe;
+            }
+
+            // Create New Row
+            var createRow = document.createElement('div');
+            createRow.className = 'row result-block';
+            startResults.appendChild(createRow);
+
+            // Image Block
+            var resultDivimage = document.createElement('div');
+            resultDivimage.className = "col-md-3 image";
+            //startResults.appendChild(resultDivimage);
+            var paragraphimage = document.createElement('p');
+            resultDivimage.appendChild(paragraphimage);
+            //paragraphimage.innerHTML ="<img src=\"" + image + "\">";
+            paragraphimage.innerHTML ="<img src='images/defaultpic.png'>";
+
+
+            // Name Block
+            var resultDivname = document.createElement('div');
+            resultDivname.className = "col-md-3 name";
+            //startResults.appendChild(resultDivname);
+            var paragraph = document.createElement('h2');
+            resultDivname.appendChild(paragraph);
+            paragraph.textContent = name;
+
+            // Rating Block
+            var resultDivrating = document.createElement('div');
+            resultDivrating.className = "col-md-3 rating";
+            //startResults.appendChild(resultDivrating);
+            var paragraphrating = document.createElement('p');
+            resultDivrating.appendChild(paragraphrating);
+            paragraphrating.textContent = rating;
+
+            // Price Block
+            var resultDivprice = document.createElement('div');
+            resultDivprice.className = "col-md-3 price";
+            //startResults.appendChild(resultDivprice);
+            var paragraphprice = document.createElement('p');
+            resultDivprice.appendChild(paragraphprice);
+            paragraphprice.textContent = '$'+wash;
+
+            //Append New blocks To new Row
+            createRow.appendChild(resultDivimage);
+            createRow.appendChild(resultDivname);
+            createRow.appendChild(resultDivrating);
+            createRow.appendChild(resultDivprice);
+          } else {
+            //console.log('No One Available in those cities');
+          }
+        }
       }
-
-      // Create New Row
-      var createRow = document.createElement('div');
-      createRow.className = 'row';
-      startResults.appendChild(createRow);
-
-      // Image Block
-      var resultDivimage = document.createElement('div');
-      resultDivimage.className = "col-md-3 image";
-      //startResults.appendChild(resultDivimage);
-      var paragraphimage = document.createElement('p');
-      resultDivimage.appendChild(paragraphimage);
-      paragraphimage.textContent = image;
-
-      // Name Block
-      var resultDivname = document.createElement('div');
-      resultDivname.className = "col-md-3 name";
-      //startResults.appendChild(resultDivname);
-      var paragraph = document.createElement('h2');
-      resultDivname.appendChild(paragraph);
-      paragraph.textContent = name;
-
-      // Rating Block
-      var resultDivrating = document.createElement('div');
-      resultDivrating.className = "col-md-3 rating";
-      //startResults.appendChild(resultDivrating);
-      var paragraphrating = document.createElement('p');
-      resultDivrating.appendChild(paragraphrating);
-      paragraphrating.textContent = rating;
-
-      // Price Block
-      var resultDivprice = document.createElement('div');
-      resultDivprice.className = "col-md-3 price";
-      //startResults.appendChild(resultDivprice);
-      var paragraphprice = document.createElement('p');
-      resultDivprice.appendChild(paragraphprice);
-      paragraphprice.textContent = '$'+wash;
-
-      //Append New blocks To new Row
-      createRow.appendChild(resultDivimage);
-      createRow.appendChild(resultDivname);
-      createRow.appendChild(resultDivrating);
-      createRow.appendChild(resultDivprice);
-    } else {
-      console.log('No One Available in those cities');
     }
-
- }
+  };
+  xhr.send(null);
 }
-
-
+buildResults();
 
 
 

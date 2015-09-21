@@ -21,6 +21,9 @@ var Schema = mongoose.Schema
 
 var Detailer = new Schema({
   first_name : String,
+  city: String,
+  rating: Number,
+  img: { data: Buffer, contentType: String },
   basic_wash : Number,
   super_wash : Number,
   deluxe_wash : Number
@@ -33,9 +36,13 @@ app.post('/add-detailers' ,jsonParser , function(req, res){
   console.log(req.body);
   var detailer_data = {
     first_name: req.body.firstname,
+    city: req.body.city,
+    rating: req.body.rating,
     basic_wash: req.body.basicwash,
     super_wash: req.body.superwash,
-    deluxe_wash: req.body.deluxewash
+    deluxe_wash: req.body.deluxewash,
+    img: req.body.img
+
   };
   //console.log(detailer_data);
 
@@ -59,6 +66,10 @@ app.get('/show-detailers', function(req, res){
 });
 
 //Basic Routes
+
+app.post('/wash', function(req, res){
+  res.send('Check');
+});
 
 app.get('/', function(req, res){
   res.sendFile(path.join(__dirname + '/index.html'))
