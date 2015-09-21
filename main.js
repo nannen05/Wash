@@ -118,12 +118,24 @@ function buildResults() {
             paragraph.textContent = name;
 
             // Rating Block
+            if (rating === 1) {
+              rating = "<img src='images/stars.png'>";
+            } else if (rating === 2) {
+              rating = "<img src='images/stars.png'><img src='images/stars.png'>";
+            } else if (rating === 3) {
+              rating = "<img src='images/stars.png'><img src='images/stars.png'><img src='images/stars.png'>";
+            } else if (rating === 4) {
+              rating = "<img src='images/stars.png'><img src='images/stars.png'><img src='images/stars.png'><img src='images/stars.png'>";
+            } else {
+              rating = "<img src='images/stars.png'><img src='images/stars.png'><img src='images/stars.png'><img src='images/stars.png'><img src='images/stars.png'>";
+            }
+
             var resultDivrating = document.createElement('div');
             resultDivrating.className = "col-md-3 rating";
             //startResults.appendChild(resultDivrating);
             var paragraphrating = document.createElement('p');
             resultDivrating.appendChild(paragraphrating);
-            paragraphrating.textContent = rating;
+            paragraphrating.innerHTML = rating;
 
             // Price Block
             var resultDivprice = document.createElement('div');
@@ -147,7 +159,7 @@ function buildResults() {
   };
   xhr.send(null);
 }
-buildResults();
+
 
 
 
