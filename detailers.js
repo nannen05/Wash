@@ -3,9 +3,10 @@ var detailers = {
     {
       "name":"Jim Wash",
       'rating': 1,
-      'image': 'images/jim.jpg',
+      'image': 'images/defaultpic.png',
       'city': 'Tustin',
       'lat': '',
+      'location' : [-33.890542, 151.274856],
       'long': '',
       'description': '',
       'basic': 19,
@@ -17,8 +18,8 @@ var detailers = {
     {
       "name":"Steve Wash",
       'rating': 2,
-      'image': 'images/steve.jpg',
-      'city': 'Irvine',
+      'image': 'images/defaultpic.png',
+      'city': 'Tustin',
       'lat': '',
       'long': '',
       'description': '',
@@ -31,8 +32,8 @@ var detailers = {
     {
       "name":"Jack Wash",
       'rating': 3,
-      'image': 'images/jack.jpg',
-      'city': 'Santa Ana',
+      'image': 'images/defaultpic.png',
+      'city': 'Tustin',
       'lat': '',
       'long': '',
       'description': '',

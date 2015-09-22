@@ -1,5 +1,6 @@
 var globalWashType;
 var globalCity;
+
 var results = document.getElementById('results');
 results.style.display = 'none';
 
@@ -31,7 +32,6 @@ function hideWashType(e){
   var textp = document.createElement('p');
   selectedWashType.appendChild(textp);
   textp.textContent = 'You Have Selected: ' + globalWashType;
-  //window.location.hash = '#cites';
 }
 
 var cities = document.getElementById('cities');
@@ -97,7 +97,11 @@ function buildResults() {
             // Create New Row
             var createRow = document.createElement('div');
             createRow.className = 'row result-block';
+            createRow.setAttribute('data-result-number', i);
             startResults.appendChild(createRow);
+
+
+
 
             // Image Block
             var resultDivimage = document.createElement('div');
@@ -107,7 +111,6 @@ function buildResults() {
             resultDivimage.appendChild(paragraphimage);
             //paragraphimage.innerHTML ="<img src=\"" + image + "\">";
             paragraphimage.innerHTML ="<img src='images/defaultpic.png'>";
-
 
             // Name Block
             var resultDivname = document.createElement('div');
@@ -159,6 +162,13 @@ function buildResults() {
   };
   xhr.send(null);
 }
+
+
+
+
+
+
+
 
 
 
