@@ -1,10 +1,14 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var fs = require('fs');
 
 var bodyParser = require('body-parser');
-
 var mongoose = require('mongoose');
+
+var formidable = require('formidable');
+
+app.use(express.static('./'));
 
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
@@ -41,10 +45,10 @@ app.post('/add-detailers' ,jsonParser , function(req, res){
     basic_wash: req.body.basicwash,
     super_wash: req.body.superwash,
     deluxe_wash: req.body.deluxewash,
-    img: req.body.image,
+    img: req.body.image
 
   };
-  //console.log(detailer_data);
+  console.log(detailer_data);
 
   var detailer = new Detailer(detailer_data);
 
@@ -60,17 +64,31 @@ app.post('/add-detailers' ,jsonParser , function(req, res){
 });
 
 //Get Image
-app.post('/upload', jsonParser, function(req, res) {
-  //res.setHeader('Content-Type', 'image/png')
-  console.log(req.body)
 
+
+app.post('/upload', function (req, res) {
+
+  var form = new formidable.IncomingForm();
+  //console.log(form);
+  //console.log(req._readableState);
+  //console.log(req.body);
+  form.parse(req, function(err, fields, files) {
+    res.end('success');
+  });
+  form.on('end', function(fields, files) {
+    var temp_path = this.openedFiles[0].path;
+    //console.log(temp_path);
+    var file_name = this.openedFiles[0].name;
+    var new_location = path.dirname(require.main.filename) + "/uploads/";
+    fs.rename(temp_path, new_location + file_name, function(err) {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log("success!")
+      }
+    });
+  });
 });
-
-//var multer  = require('multer')
-//var upload = multer({ dest: 'uploads/' });
-//
-//var restler = require('restler');
-//var fs = require('fs');
 
 app.get('/show-detailers', function(req, res){
   Detailer.find({}, function(error, data){

@@ -78,13 +78,16 @@ function buildResults() {
           if (globalCity.value == jsonResponse[i].city) {
             // Detail Values from db
             var name = jsonResponse[i].first_name;
-            //var image = detailers.detailers[i].image;
+            var image = jsonResponse[i].img;
             var rating = jsonResponse[i].rating;
             var basic = jsonResponse[i].basic_wash;
             var superwash = jsonResponse[i].super_wash;
             var deluxe = jsonResponse[i].deluxe_wash;
             //var location = detailers.detailers[i].location[1];
             var wash;
+
+            //console.log(image.replace('C:\\fakepath\\', ''));
+            //console.log(image);
 
             if(globalWashType == 'Basic')  {
               wash = basic;
@@ -101,8 +104,6 @@ function buildResults() {
             startResults.appendChild(createRow);
 
 
-
-
             // Image Block
             var resultDivimage = document.createElement('div');
             resultDivimage.className = "col-md-3 image";
@@ -110,7 +111,8 @@ function buildResults() {
             var paragraphimage = document.createElement('p');
             resultDivimage.appendChild(paragraphimage);
             //paragraphimage.innerHTML ="<img src=\"" + image + "\">";
-            paragraphimage.innerHTML ="<img src='images/defaultpic.png'>";
+            //paragraphimage.innerHTML ="<img src='images/defaultpic.png'>";
+            paragraphimage.innerHTMl = "<img src='uploads/'" + image + ">";
 
             // Name Block
             var resultDivname = document.createElement('div');
@@ -165,8 +167,8 @@ function buildResults() {
 
 
 
-
-
+var tester = 'C:\\fakepath\\defaultpic.png';
+tester.replace('C:\\fakepath\\', '');
 
 
 
