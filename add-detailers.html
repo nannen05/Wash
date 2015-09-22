@@ -21,14 +21,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <div class="navbar-brand" ><a href="#">WashMe</a></div>
+      <div class="navbar-brand" ><a href="/">WashMe</a></div>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">Features</a></li>
         <li><a href="#">About</a></li>
-        <li><a href="#">Become a Detailer</a></li>
+        <li><a href="/add-detailers">Add A Detailer</a></li>
         <li class="wash-nav-buttons"><a href="#">Log In</a></li>
         <li class="wash-nav-buttons"><a href="#">Sign Up</a></li>
       </ul>
@@ -39,6 +39,14 @@
   <div class="container"
     <form>
       <input type="text" name="firstname" id="firstname" placeholder="Name"><br>
+      <select id="detailer-city">
+        <option value="Tustin">Tustin</option>
+        <option value="Irvine">Irvine</option>
+        <option value="Santa Ana">Santa Ana</option>
+        <option value="Costa Mesa">Costa Mesa</option>
+      </select>
+      <input type="file" id="image-upload" name="pic" accept="image/*"><br>
+      <input type="text" name="rating" id="rating" placeholder="Rating"><br>
       <input type="text" name="basicwash" id="basicwash" placeholder="Basic Wash"><br>
       <input type="text" id="superwash" placeholder="Super Wash"><br>
       <input type="text" id="deluxewash" placeholder="Deluxe Wash"><br>
@@ -46,6 +54,7 @@
 
     </form>
   </div>
+  <div id="showdb"></div>
 </section>
 
 </body>
