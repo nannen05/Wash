@@ -11,7 +11,7 @@ function detailerString () {
   data.firstname = firstname.value;
   data.rating = rating.value;
   data.city = city.value;
-  data.image = image.value
+  data.image = image.value;
   data.basicwash = basicWash.value;
   data.superwash = superWash.value;
   data.deluxewash = deluxeWash.value;
@@ -29,6 +29,27 @@ function sendNewDetailer(e) {
 
 var submit = document.getElementById('submit');
 submit.addEventListener('click', function(e){
-  sendNewDetailer(e);
+  upload();//sendNewDetailer(e);
 }, false );
+
+function upload() {
+  //get the input and the file
+  var input = document.querySelector('input[type=file]'),
+      file = input.files[0];
+
+  //if the file isn't a image nothing happens.
+  //you are free to implement a fallback
+  if (!file || !file.type.match(/image.*/)) return;
+
+  //Creates the FormData object and attach to a key name "file"
+  var fd = new FormData();
+  fd.append("file", file);
+
+  console.log(fd);
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "/upload");
+  xhr.setRequestHeader("Content-type","image/png");
+  xhr.send(fd);
+}
 

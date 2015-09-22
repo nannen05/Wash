@@ -37,7 +37,7 @@
 </nav>
 <section>
   <div class="container"
-    <form>
+    <form action="/upload" method="post" enctype="multipart/form-data">
       <input type="text" name="firstname" id="firstname" placeholder="Name"><br>
       <select id="detailer-city">
         <option value="Tustin">Tustin</option>
@@ -45,7 +45,7 @@
         <option value="Santa Ana">Santa Ana</option>
         <option value="Costa Mesa">Costa Mesa</option>
       </select>
-      <input type="file" id="image-upload" name="pic" accept="image/*"><br>
+      <input type="file" id="file" name="file" accept="image/*"><br>
       <input type="text" name="rating" id="rating" placeholder="Rating"><br>
       <input type="text" name="basicwash" id="basicwash" placeholder="Basic Wash"><br>
       <input type="text" id="superwash" placeholder="Super Wash"><br>

@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 var path = require('path');
-//var request = require('request');
 
 var bodyParser = require('body-parser');
 
@@ -24,7 +23,7 @@ var Detailer = new Schema({
   first_name : String,
   city: String,
   rating: Number,
-  img: { data: Buffer, contentType: String },
+  img: String,
   basic_wash : Number,
   super_wash : Number,
   deluxe_wash : Number
@@ -34,7 +33,7 @@ var Detailer = mongoose.model('Detailer', Detailer);
 
 app.post('/add-detailers' ,jsonParser , function(req, res){
   res.setHeader('Content-Type', 'application/json');
-  console.log(req.body);
+  console.log(req.body.image);
   var detailer_data = {
     first_name: req.body.firstname,
     city: req.body.city,
@@ -42,7 +41,7 @@ app.post('/add-detailers' ,jsonParser , function(req, res){
     basic_wash: req.body.basicwash,
     super_wash: req.body.superwash,
     deluxe_wash: req.body.deluxewash,
-    img: req.body.img
+    img: req.body.image,
 
   };
   //console.log(detailer_data);
@@ -59,6 +58,19 @@ app.post('/add-detailers' ,jsonParser , function(req, res){
     }
   });
 });
+
+//Get Image
+app.post('/upload', jsonParser, function(req, res) {
+  //res.setHeader('Content-Type', 'image/png')
+  console.log(req.body)
+
+});
+
+//var multer  = require('multer')
+//var upload = multer({ dest: 'uploads/' });
+//
+//var restler = require('restler');
+//var fs = require('fs');
 
 app.get('/show-detailers', function(req, res){
   Detailer.find({}, function(error, data){
@@ -83,7 +95,6 @@ app.get('/add-detailers', function(req, res){
 app.use('/images', express.static(__dirname + '/images'));
 app.use('/js' , express.static(__dirname + '/js'));
 app.use('/', express.static(__dirname + '/'));
-
 
 app.listen(1339);
 console.log('1339 is the magic port');
