@@ -86,8 +86,14 @@ function buildResults() {
             //var location = detailers.detailers[i].location[1];
             var wash;
 
-            //console.log(image.replace('C:\\fakepath\\', ''));
-            //console.log(image);
+
+            startResults.addEventListener('click' , function(e){
+                var target = e.target;
+                console.log(target);
+            }, false)
+
+            var imagepath = "<img src='uploads/" + image + "'/>";
+            console.log(imagepath);
 
             if(globalWashType == 'Basic')  {
               wash = basic;
@@ -107,12 +113,13 @@ function buildResults() {
             // Image Block
             var resultDivimage = document.createElement('div');
             resultDivimage.className = "col-md-3 image";
-            //startResults.appendChild(resultDivimage);
-            var paragraphimage = document.createElement('p');
+            startResults.appendChild(resultDivimage);
+            var paragraphimage = document.createElement('div');
             resultDivimage.appendChild(paragraphimage);
             //paragraphimage.innerHTML ="<img src=\"" + image + "\">";
-            //paragraphimage.innerHTML ="<img src='images/defaultpic.png'>";
-            paragraphimage.innerHTMl = "<img src='uploads/'" + image + ">";
+            //resultDivimage.innerHTML = "<img src='images/defaultpic.png'>";
+            paragraphimage.innerHTML = imagepath;
+            //resultDivimage.innerHTML = imagepath;
 
             // Name Block
             var resultDivname = document.createElement('div');
@@ -124,15 +131,15 @@ function buildResults() {
 
             // Rating Block
             if (rating === 1) {
-              rating = "<img src='images/stars.png'>";
+              rating = "<img src='../images/stars.png'>";
             } else if (rating === 2) {
-              rating = "<img src='images/stars.png'><img src='images/stars.png'>";
+              rating = "<img src='../images/stars.png'><img src='../images/stars.png'>";
             } else if (rating === 3) {
-              rating = "<img src='images/stars.png'><img src='images/stars.png'><img src='images/stars.png'>";
+              rating = "<img src='../images/stars.png'><img src='../images/stars.png'><img src='../images/stars.png'>";
             } else if (rating === 4) {
-              rating = "<img src='images/stars.png'><img src='images/stars.png'><img src='images/stars.png'><img src='images/stars.png'>";
+              rating = "<img src='../images/stars.png'><img src='../images/stars.png'><img src='../images/stars.png'><img src='../images/stars.png'>";
             } else {
-              rating = "<img src='images/stars.png'><img src='images/stars.png'><img src='images/stars.png'><img src='images/stars.png'><img src='images/stars.png'>";
+              rating = "<img src='../images/stars.png'><img src='../images/stars.png'><img src='../images/stars.png'><img src='../images/stars.png'><img src='../images/stars.png'>";
             }
 
             var resultDivrating = document.createElement('div');
@@ -164,11 +171,6 @@ function buildResults() {
   };
   xhr.send(null);
 }
-
-
-
-var tester = 'C:\\fakepath\\defaultpic.png';
-tester.replace('C:\\fakepath\\', '');
 
 
 
