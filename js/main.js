@@ -3,6 +3,8 @@ var globalCity;
 
 var results = document.getElementById('results');
 results.style.display = 'none';
+var startResults = document.getElementById('start-results');
+startResults.className = 'result';
 
 function sendWashType(e) {
   e.preventDefault()
@@ -24,17 +26,14 @@ function sendWashType(e) {
 function hideWashType(e){
   parentWash.style.display = "none";
   cities.style.display = "block";
-
   //Get Wash Type Id in Cities Block
   var selectedWashType = document.getElementById('selected-wash-type');
-
   //Build Out Wash Type Response
   var textp = document.createElement('p');
   selectedWashType.appendChild(textp);
   textp.textContent = 'You Have Selected: ' + globalWashType;
 }
 
-var cities = document.getElementById('cities');
 var parentWash = document.getElementById('wash-container');
 parentWash.addEventListener('click', function(e) {
   sendWashType(e);hideWashType(e)
@@ -57,11 +56,8 @@ selectedcity.addEventListener('click', function(e) {
   citySelect(e);buildResults();
 }, false);
 
-
 //Build Results
 function buildResults() {
-  var startResults = document.getElementById('start-results');
-  startResults.className = 'result';
   //Request from DB
   var xhr = new XMLHttpRequest;
   xhr.open('GET', '/show-detailers', true);
@@ -83,14 +79,7 @@ function buildResults() {
             var basic = jsonResponse[i].basic_wash;
             var superwash = jsonResponse[i].super_wash;
             var deluxe = jsonResponse[i].deluxe_wash;
-            //var location = detailers.detailers[i].location[1];
             var wash;
-
-
-            startResults.addEventListener('click' , function(e){
-                var target = e.target;
-                console.log(target);
-            }, false)
 
             var imagepath = "<img src='uploads/" + image + "'/>";
             console.log(imagepath);
@@ -103,28 +92,17 @@ function buildResults() {
               wash = deluxe;
             }
 
-            // Create New Row
-            var createRow = document.createElement('div');
-            createRow.className = 'row result-block';
-            createRow.setAttribute('data-result-number', i);
-            startResults.appendChild(createRow);
-
-
             // Image Block
             var resultDivimage = document.createElement('div');
             resultDivimage.className = "col-md-3 image";
             startResults.appendChild(resultDivimage);
             var paragraphimage = document.createElement('div');
             resultDivimage.appendChild(paragraphimage);
-            //paragraphimage.innerHTML ="<img src=\"" + image + "\">";
-            //resultDivimage.innerHTML = "<img src='images/defaultpic.png'>";
             paragraphimage.innerHTML = imagepath;
-            //resultDivimage.innerHTML = imagepath;
 
             // Name Block
             var resultDivname = document.createElement('div');
             resultDivname.className = "col-md-3 name";
-            //startResults.appendChild(resultDivname);
             var paragraph = document.createElement('h2');
             resultDivname.appendChild(paragraph);
             paragraph.textContent = name;
@@ -144,7 +122,6 @@ function buildResults() {
 
             var resultDivrating = document.createElement('div');
             resultDivrating.className = "col-md-3 rating";
-            //startResults.appendChild(resultDivrating);
             var paragraphrating = document.createElement('p');
             resultDivrating.appendChild(paragraphrating);
             paragraphrating.innerHTML = rating;
@@ -152,16 +129,11 @@ function buildResults() {
             // Price Block
             var resultDivprice = document.createElement('div');
             resultDivprice.className = "col-md-3 price";
-            //startResults.appendChild(resultDivprice);
             var paragraphprice = document.createElement('p');
             resultDivprice.appendChild(paragraphprice);
             paragraphprice.textContent = '$'+wash;
 
-            //Append New blocks To new Row
-            createRow.appendChild(resultDivimage);
-            createRow.appendChild(resultDivname);
-            createRow.appendChild(resultDivrating);
-            createRow.appendChild(resultDivprice);
+            blockMaker(resultDivimage, resultDivname, resultDivrating, resultDivprice)
           } else {
             //console.log('No One Available in those cities');
           }
@@ -172,7 +144,19 @@ function buildResults() {
   xhr.send(null);
 }
 
+function blockMaker(resultDivimage, resultDivname, resultDivrating, resultDivprice) {
+  // Create New Row
+  var createRow = document.createElement('div');
+  createRow.className = 'row result-block';
+  //createRow.setAttribute('data-result-number', i);
+  startResults.appendChild(createRow);
 
+  //Append New blocks To new Row
+  createRow.appendChild(resultDivimage);
+  createRow.appendChild(resultDivname);
+  createRow.appendChild(resultDivrating);
+  createRow.appendChild(resultDivprice);
+}
 
 
 
