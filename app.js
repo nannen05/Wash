@@ -2,16 +2,18 @@ var express = require('express');
 var app = express();
 var path = require('path');
 
-var imagesave = require('./js/imagesave.js');
-var dataStore = require('./js/db.js');
+var imagesave = require('./routes/imagesave.js');
+var dataStore = require('./routes/db.js');
 
 app.use('/upload' , imagesave);
 app.use('/', dataStore);
-app.use(express.static('./'));
+app.use(express.static('./uploads'));
+app.use(express.static('./public'));
+app.use(express.static('./public/images'));
 
-app.post('/wash', function(req, res){
-  res.send('Check');
-});
+//app.post('/wash', function(req, res){
+//  res.send('Check');
+//});
 
 app.listen(1339);
 console.log('1339 is the magic port');
