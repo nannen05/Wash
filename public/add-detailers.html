@@ -36,34 +36,40 @@
   </div><!-- /.container-fluid -->
 </nav>
 <section>
-  <div class="home-section ">
+  <div class="home-section">
     <div class="home-inner">
       <h1>Add a Detailer</h1>
     </div>
   </div><!-- Home section -->
 </section>
-<section>
-  <div class="container"
-    <form action="/upload" method="post" enctype="multipart/form-data">
-      <input type="text" name="firstname" id="firstname" placeholder="Name"><br>
-      <select id="detailer-city">
-        <option value="Tustin">Tustin</option>
-        <option value="Irvine">Irvine</option>
-        <option value="Santa Ana">Santa Ana</option>
-        <option value="Costa Mesa">Costa Mesa</option>
-      </select>
-      <input type="file" id="picture" name="uploadfile" accept="image/*"><br>
-      <input type="text" name="rating" id="rating" placeholder="Rating"><br>
-      <input type="text" name="basicwash" id="basicwash" placeholder="Basic Wash"><br>
-      <input type="text" id="superwash" placeholder="Super Wash"><br>
-      <input type="text" id="deluxewash" placeholder="Deluxe Wash"><br>
-      <input type="submit">
-      <button id="submit">Submit</button>
+<section class="detailers">
+  <div class="container">
+    <div class="add-detailer">
+      <h2>Please Fill Out Current Information</h2>
+      <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="text" required name="firstname" id="firstname" placeholder="Name"><br>
+        <select id="detailer-city">
+          <option value="Tustin">Tustin</option>
+          <option value="Irvine">Irvine</option>
+          <option value="Santa Ana">Santa Ana</option>
+          <option value="Costa Mesa">Costa Mesa</option>
+        </select>
+        <input type="file" required id="picture" name="uploadfile" accept="image/*">
+        <input type="text" required name="rating" id="rating" placeholder="Rating"><br>
+        <input type="text" required name="basicwash" id="basicwash" placeholder="Basic Wash"><br>
+        <input type="text" required id="superwash" placeholder="Super Wash"><br>
+        <input type="text" required id="deluxewash" placeholder="Deluxe Wash"><br>
+        <button id="submit">Submit</button>
 
-    </form>
+      </form>
+     </div>
   </div>
   <div id="showdb"></div>
 </section>
+<footer>
+  <a href="index.html">WashMe</a>
+  <p>Copyright 2015 &reg; | <a href="#">All Rights Reserved</a> | <a href="#">Privacy Policy</a></p>
+</footer>
 
 </body>
 
@@ -78,10 +84,13 @@
       windowHeight = $(window).innerHeight();
       //var windowHeightnav = windowHeight - 73;
       var homeoverlay = (windowHeight/4);
-      //$('.home-overlay').css('margin-top', homeoverlay);
-      //$('.test').css('margin-top', homeoverlay)
+      var imageBanner = windowHeight - 650;
       $('.test-1').css('margin-top', '80px') //Cites and Results divs
-      $('.home-section').css('min-height', (windowHeight - 650));
+      $('.home-section').css('min-height', imageBanner);
+      var detailers = windowHeight - imageBanner;
+      var footer = $('footer').height()
+      $('.detailers').css('min-height' , (detailers - footer));
+      //console.log($('footer').height())
     };
     setHeight();
 
@@ -90,14 +99,7 @@
     });
     $('.home-inner').css('top', '10%');
 
-    $(window).scroll (function () {
-      var sT = $(this).scrollTop();
-      if (sT >= 145) {
-        $('.navbar').addClass('nav-back')
-      }else {
-        $('.navbar').removeClass('nav-back')
-      }
-    })
+
 
   });
 </script>

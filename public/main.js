@@ -77,12 +77,14 @@ function buildResults() {
       var resultDivname = document.createElement('div');
       var resultDivrating = document.createElement('div');
       var resultDivprice = document.createElement('div');
+      var citylisting = document.getElementById('citylisting');
+      citylisting.textContent = 'Showing Detailers for ' + globalCity.value;
 
       buildImage(i, resultDivimage);
       buildName(i, resultDivname);
       buildRatings(i, resultDivrating);
       buildPrices(i , resultDivprice);
-      blockMaker(resultDivimage, resultDivname, resultDivrating, resultDivprice );
+      blockMaker(i, resultDivimage, resultDivname, resultDivrating, resultDivprice );
 
 
     } else {
@@ -91,11 +93,11 @@ function buildResults() {
   }
 }
 
-function blockMaker(resultDivimage, resultDivname, resultDivrating, resultDivprice ) {
+function blockMaker(i, resultDivimage, resultDivname, resultDivrating, resultDivprice ) {
   var createRow = document.createElement('div');
   createRow.className = 'row result-block';
   startResults.appendChild(createRow);
-  //createRow.setAttribute('data-result-number', dbrefrence);
+  createRow.setAttribute('data-result-number', i);
   //var attr = createRow.attributes['data-result-number'];
   //console.log(attr);
 
@@ -107,7 +109,7 @@ function blockMaker(resultDivimage, resultDivname, resultDivrating, resultDivpri
 }
 //Create Specific Columns
 function buildImage(dbrefrence, resultDivimage) {
-  var imagePath = "<img src='uploads/" + jsondetailers[dbrefrence].img + "'/>";
+  var imagePath = "<img src='/uploads/" + jsondetailers[dbrefrence].img + "'/>";
   resultDivimage.className = "col-md-3 image";
   var paragraphimage = document.createElement('div');
   resultDivimage.appendChild(paragraphimage);
