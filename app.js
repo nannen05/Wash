@@ -7,7 +7,7 @@ var dataStore = require('./routes/db.js');
 
 app.use('/upload' , imagesave);
 app.use('/', dataStore);
-app.use(express.static('./uploads'));
+app.use(express.static('/uploads'));
 app.use(express.static('./public'));
 app.use(express.static('./public/images'));
 

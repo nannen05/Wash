@@ -17,7 +17,7 @@ image.post('/upload', function (req, res) {
     var temp_path = this.openedFiles[0].path;
     //console.log(temp_path);
     var file_name = this.openedFiles[0].name;
-    var new_location = path.dirname(require.main.filename) + "/uploads/";
+    var new_location = path.dirname(require.main.filename) + "/public/uploads/";
     //console.log(new_location);
     //console.log(temp_path);
     fs.rename(temp_path, new_location + file_name, function(err) {
