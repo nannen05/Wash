@@ -1,0 +1,34 @@
+{
+  "name": "WashMe",
+  "version": "1.0.0",
+  "description": "Its a car detail quote app for someone to hire a mobile washer",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nannen05/WashMe"
+  },
+  "author": "Nick Annen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kentonscode/kraken/issues"
+  },
+  "homepage": "https://github.com/nannen05/WashMe/issues",
+  "dependencies": {
+    "browser-sync": "^2.9.8",
+    "express": "^4.13.3",
+    "gulp": "^3.9.0",
+    "gulp-imagemin": "^2.3.0",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-minify-html": "^1.0.4",
+    "gulp-mocha": "^2.1.3",
+    "gulp-nodemon": "^2.0.4",
+    "gulp-uglify": "^1.4.1",
+    "imagemin-pngquant": "^4.2.0",
+    "require-dir": "^0.3.0",
+    "should": "^7.1.0",
+    "supertest": "^1.1.0"
+  }
+}
