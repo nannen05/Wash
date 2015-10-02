@@ -6,12 +6,13 @@ var minifyCss = require('gulp-minify-css');
 var minifyHTML = require('gulp-minify-html');
 var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
+var browserSync = require('browser-sync').create();
 
 gulp.task('watch', function() {
-  gulp.watch('app.js', function(){
-    console.log('server changed');
+  browserSync.init({
+    server: "./public"
   });
-
+  gulp.watch("public/*").on('change', browserSync.reload);
 });
 
 gulp.task('test', function() {
@@ -24,13 +25,23 @@ gulp.task('nodemon', function() {
     script: 'app.js',
     ext: 'js'
   })
-      .on('start', ['test'])
+      //.on('start', ['test'])
+      .on('start', function() {
+        console.log('Started')
+      })
+      //.on('restart', ['browser-sync'])
       .on('change' , function() {
         console.log("Changed")
       })
       .on('restart', function() {
         console.log('Restarted');
       })
+});
+
+gulp.task('browser-sync', function() {
+  browserSync.init({
+    proxy: "http://localhost:1339"
+  });
 });
 
 gulp.task('compress-html', function() {
@@ -71,4 +82,4 @@ gulp.task('compress-uploads', function() {
       .pipe(gulp.dest('public/dist/uploads'));
 });
 
-gulp.task('default', ['nodemon','compress-html', 'compress-css', 'compress-js', 'compress-images', 'compress-uploads']);
+gulp.task('default', ['nodemon','watch', 'compress-html', 'compress-css', 'compress-js', 'compress-images', 'compress-uploads']);
