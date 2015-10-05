@@ -13,9 +13,9 @@
   "author": "Nick Annen",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kentonscode/kraken/issues"
+    "url": "https://github.com/nannen05/WashMe/issues"
   },
-  "homepage": "https://github.com/nannen05/WashMe/issues",
+  "homepage": "https://github.com/nannen05/WashMe/",
   "dependencies": {
     "browser-sync": "^2.9.8",
     "express": "^4.13.3",
