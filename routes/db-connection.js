@@ -14,6 +14,7 @@ var db = mongoose.connect('mongodb://localhost:27017/db_test', function(err) {
 var Schema = mongoose.Schema
 
 var Detailer = new Schema({
+  username: String,
   first_name : String,
   city: String,
   rating: Number,

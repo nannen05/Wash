@@ -47,6 +47,7 @@
     <div class="add-detailer">
       <h2>Please Fill Out Current Information</h2>
       <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="text" required name="username" id="username" placeholder="Username"><br>
         <input type="text" required name="firstname" id="firstname" placeholder="Name"><br>
         <select id="detailer-city">
           <option value="Tustin">Tustin</option>
@@ -59,7 +60,7 @@
         <input type="text" required name="basicwash" id="basicwash" placeholder="Basic Wash"><br>
         <input type="text" required id="superwash" placeholder="Super Wash"><br>
         <input type="text" required id="deluxewash" placeholder="Deluxe Wash"><br>
-        <button id="submit">Submit</button>
+        <button id="submit" >Submit</button>
 
       </form>
      </div>
@@ -86,7 +87,7 @@
       var homeoverlay = (windowHeight/4);
       var imageBanner = windowHeight - 650;
       $('.test-1').css('margin-top', '80px') //Cites and Results divs
-      $('.home-section').css('min-height', imageBanner);
+      $('.home-section').css('min-height', 220);
       var detailers = windowHeight - imageBanner;
       var footer = $('footer').height()
       $('.detailers').css('min-height' , (detailers - footer));

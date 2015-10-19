@@ -18,6 +18,7 @@ dataStore.post('/add-detailers' ,jsonParser , function(req, res){
   var imagepath = req.body.image;
 
   var detailer_data = {
+    username: req.body.username,
     first_name: req.body.firstname,
     city: req.body.city,
     rating: req.body.rating,
@@ -25,7 +26,6 @@ dataStore.post('/add-detailers' ,jsonParser , function(req, res){
     super_wash: req.body.superwash,
     deluxe_wash: req.body.deluxewash,
     img: imagepath.replace("C:\\fakepath\\", "")
-
   };
 
   var detailer = new Detailer(detailer_data);
@@ -36,7 +36,6 @@ dataStore.post('/add-detailers' ,jsonParser , function(req, res){
     }
     else{
       res.json(data);
-
     }
   });
 });
@@ -45,6 +44,15 @@ dataStore.get('/show-detailers', function(req, res){
   Detailer.find({}, function(error, data){
     res.json(data);
   });
+});
+
+dataStore.get('/users/:username', function (req, res) {
+  if (req.params.username) {
+    Detailer.find({ username: req.params.username }, function (error, data) {
+      res.json(data);
+      //res.send(res.json(data));
+    });
+  }
 });
 
 module.exports = dataStore;
