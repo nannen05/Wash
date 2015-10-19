@@ -49,10 +49,13 @@ dataStore.get('/show-detailers', function(req, res){
 dataStore.get('/users/:username', function (req, res) {
   if (req.params.username) {
     Detailer.find({ username: req.params.username }, function (error, data) {
-      res.json(data);
-      //res.send(res.json(data));
+      //res.json(data);
+      res.sendFile(path.join(__dirname, '../public/views', 'user.html'));
+
     });
   }
 });
+
+
 
 module.exports = dataStore;
