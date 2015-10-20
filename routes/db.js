@@ -46,20 +46,38 @@ dataStore.get('/show-detailers', function(req, res){
   });
 });
 
+//Display userpage
 dataStore.get('/users/:username', function (req, res) {
   if (req.params.username) {
     Detailer.find({ username: req.params.username }, function (error, data) {
-      //res.json(data);
       res.sendFile(path.join(__dirname, '../public/views', 'user.html'));
-
     });
   }
 });
 
-dataStore.put('/api/:username', function(req, res) {
+//Get User Data
+dataStore.get('/view/:user', function (req, res) {
+  if (req.params.user) {
+    Detailer.find({ username: req.params.user }, function (error, data) {
+      res.json(data);
+     });
+  }
+});
+
+//Update User Data
+dataStore.put('/update/:username', function(req, res) {
+  var imagepath = req.body.image;
   if (req.params.username) {
     Detailer.update({username: req.params.username}, {
-      username: 'NickAnnen'
+      username: req.body.username
+      first_name: req.body.firstname,
+      city: req.body.city,
+      rating: req.body.rating,
+      basic_wash: req.body.basicwash,
+      super_wash: req.body.superwash,
+      deluxe_wash: req.body.deluxewash,
+      img: imagepath.replace("C:\\fakepath\\", "")
+
     }, function(err) {
       console.log(err);
     });
