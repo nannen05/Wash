@@ -56,6 +56,15 @@ dataStore.get('/users/:username', function (req, res) {
   }
 });
 
+dataStore.put('/api/:username', function(req, res) {
+  if (req.params.username) {
+    Detailer.update({username: req.params.username}, {
+      username: 'NickAnnen'
+    }, function(err) {
+      console.log(err);
+    });
+  };
+});
 
 
 module.exports = dataStore;
