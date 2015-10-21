@@ -32,16 +32,8 @@ app.controller('PostUserController', function($scope, $http) {
       url: '/update/NickAnnen',
       data: $scope.updatedUser,
       headers : {'Content-Type': 'application/x-www-form-urlencoded'}
-    }).success(function(data) {
-          if (data.errors) {
-            // Showing errors.
-            $scope.errorName = data.errors.name;
-            $scope.errorUserName = data.errors.username;
-            $scope.errorEmail = data.errors.email;
-          } else {
-            $scope.message = data.message;
-          }
-    })
+    }).success(function(data))
+
   };
 });
 
