@@ -11,30 +11,32 @@ app.config(['$routeProvider', function($routeProvider) {
           redirectTo: '/'
         });
   }]);
-//
+
 app.controller('UserController', function($scope, $http) {
-  $http.get('/view/NickAnnen').success(function(data) {
-    $scope.username = data[0].username;
-    $scope.name = data[0].first_name;
-    $scope.city = data[0].city;
-    $scope.rating = data[0].rating;
-    $scope.basicwash = data[0].basic_wash;
-    $scope.superwash = data[0].super_wash;
-    $scope.deluxewash = data[0].deluxe_wash;
+  var name = $scope.loginuser;
+  $http({
+    method: 'GET',
+    url: '/view/',
+    params: {username: name}
+    }).success(function(data) {
+      $scope.updatedUser = {
+      username : data[0].username,
+      firstname : data[0].first_name,
+      city : data[0].city,
+      rating : data[0].rating,
+      basicwash : data[0].basic_wash,
+      superwash : data[0].super_wash,
+      deluxewash : data[0].deluxe_wash
+      };
+    $scope.submit = function () {
+      $http({
+        method: 'POST',
+        url: '/update/NickAnnen',
+        data: JSON.stringify($scope.updatedUser)
+        //headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+      }).success(function(data) {})
+    };
   });
-});
-
-app.controller('PostUserController', function($scope, $http) {
-  $scope.updatedUser = {};
-  $scope.submit = function () {
-    $http({
-      method: 'POST',
-      url: '/update/NickAnnen',
-      data: $scope.updatedUser,
-      headers : {'Content-Type': 'application/x-www-form-urlencoded'}
-    }).success(function(data))
-
-  };
 });
 
 app.controller('DetailerList', function($scope, $http) {

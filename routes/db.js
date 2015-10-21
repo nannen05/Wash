@@ -56,32 +56,35 @@ dataStore.get('/users/:username', function (req, res) {
 });
 
 //Get User Data
-dataStore.get('/view/:user', function (req, res) {
-  if (req.params.user) {
-    Detailer.find({ username: req.params.user }, function (error, data) {
+dataStore.get('/view/', function (req, res) {
+  console.log(req.query.username);
+  if (req.query.username) {
+    Detailer.find({ username: req.query.username }, function (error, data) {
       res.json(data);
      });
   }
 });
 
 //Update User Data
-dataStore.put('/update/:username', function(req, res) {
-  var imagepath = req.body.image;
+dataStore.post('/update/:username', jsonParser, function(req, res) {
+  //var imagepath = req.body.image;
+  res.setHeader('Content-Type', 'application/json');
+  console.log(req.body.firstname);
   if (req.params.username) {
     Detailer.update({username: req.params.username}, {
-      username: req.body.username
+      username: req.body.username,
       first_name: req.body.firstname,
       city: req.body.city,
       rating: req.body.rating,
       basic_wash: req.body.basicwash,
       super_wash: req.body.superwash,
-      deluxe_wash: req.body.deluxewash,
-      img: imagepath.replace("C:\\fakepath\\", "")
+      deluxe_wash: req.body.deluxewash
+      //img: imagepath.replace("C:\\fakepath\\", "")
 
     }, function(err) {
       console.log(err);
     });
-  };
+  }
 });
 
 
