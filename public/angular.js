@@ -5,7 +5,7 @@ app.config(['$routeProvider', function($routeProvider) {
     .when("/login", {
       templateUrl: '../views/userviews.html',
       controller: 'UserController',
-      controllerAs: 'user'
+      controllerAs: 'usershow'
     }).
         otherwise({
           redirectTo: '/'
@@ -14,7 +14,9 @@ app.config(['$routeProvider', function($routeProvider) {
 //
 app.controller('UserController', function($scope, $http) {
   $http.get('/view/NickAnnen').success(function(data) {
-    $scope.user = data;
+    $scope.username = data[0].username;
+    $scope.name = data[0].first_name;
+    $scope.city = data[0].city;
   });
 });
 
