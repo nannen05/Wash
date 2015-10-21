@@ -17,14 +17,37 @@ app.controller('UserController', function($scope, $http) {
     $scope.username = data[0].username;
     $scope.name = data[0].first_name;
     $scope.city = data[0].city;
+    $scope.rating = data[0].rating;
+    $scope.basicwash = data[0].basic_wash;
+    $scope.superwash = data[0].super_wash;
+    $scope.deluxewash = data[0].deluxe_wash;
   });
+});
+
+app.controller('PostUserController', function($scope, $http) {
+  $scope.updatedUser = {};
+  $scope.submit = function () {
+    $http({
+      method: 'POST',
+      url: '/update/NickAnnen',
+      data: $scope.updatedUser,
+      headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).success(function(data) {
+          if (data.errors) {
+            // Showing errors.
+            $scope.errorName = data.errors.name;
+            $scope.errorUserName = data.errors.username;
+            $scope.errorEmail = data.errors.email;
+          } else {
+            $scope.message = data.message;
+          }
+    })
+  };
 });
 
 app.controller('DetailerList', function($scope, $http) {
   $http.get('/show-detailers').success(function(data) {
     $scope.detailers = data;
-
   });
-
 });
 
