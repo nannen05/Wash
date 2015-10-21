@@ -19,6 +19,7 @@ app.controller('UserController', function($scope, $http) {
     url: '/view/',
     params: {username: name}
     }).success(function(data) {
+      if (data[0].username === name) {
       $scope.updatedUser = {
       username : data[0].username,
       firstname : data[0].first_name,
@@ -28,14 +29,18 @@ app.controller('UserController', function($scope, $http) {
       superwash : data[0].super_wash,
       deluxewash : data[0].deluxe_wash
       };
-    $scope.submit = function () {
-      $http({
-        method: 'POST',
-        url: '/update/NickAnnen',
-        data: JSON.stringify($scope.updatedUser)
-        //headers : {'Content-Type': 'application/x-www-form-urlencoded'}
-      }).success(function(data) {})
-    };
+      $scope.submit = function () {
+        $http({
+          method: 'POST',
+          url: '/update/',
+          params: {username: name},
+          data: JSON.stringify($scope.updatedUser)
+          //headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function(data) {})
+        };
+      } else {
+        alert('No User');
+      }
   });
 });
 

@@ -47,13 +47,13 @@ dataStore.get('/show-detailers', function(req, res){
 });
 
 //Display userpage
-dataStore.get('/users/:username', function (req, res) {
-  if (req.params.username) {
-    Detailer.find({ username: req.params.username }, function (error, data) {
+dataStore.get('/users/login', function (req, res) {
+  //if (req.params.username) {
+  //  Detailer.find({ username: req.params.username }, function (error, data) {
       res.sendFile(path.join(__dirname, '../public/views', 'user.html'));
-    });
-  }
-});
+   // });
+  })
+//});
 
 //Get User Data
 dataStore.get('/view/', function (req, res) {
@@ -66,12 +66,11 @@ dataStore.get('/view/', function (req, res) {
 });
 
 //Update User Data
-dataStore.post('/update/:username', jsonParser, function(req, res) {
+dataStore.post('/update/', jsonParser, function(req, res) {
   //var imagepath = req.body.image;
   res.setHeader('Content-Type', 'application/json');
-  console.log(req.body.firstname);
-  if (req.params.username) {
-    Detailer.update({username: req.params.username}, {
+  if (req.query.username) {
+    Detailer.update({username: req.query.username}, {
       username: req.body.username,
       first_name: req.body.firstname,
       city: req.body.city,
@@ -80,12 +79,10 @@ dataStore.post('/update/:username', jsonParser, function(req, res) {
       super_wash: req.body.superwash,
       deluxe_wash: req.body.deluxewash
       //img: imagepath.replace("C:\\fakepath\\", "")
-
     }, function(err) {
       console.log(err);
     });
   }
 });
-
 
 module.exports = dataStore;
