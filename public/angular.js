@@ -1,4 +1,4 @@
-var app = angular.module('carApp', ['ngRoute']);
+var app = angular.module('carApp', ['ngRoute', 'angular.filter', 'ui.bootstrap']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
@@ -11,6 +11,18 @@ app.config(['$routeProvider', function($routeProvider) {
           redirectTo: '/'
         });
   }]);
+
+app.config(['$routeProvider', function($routeProvider) {
+  $routeProvider
+      .when("/more-info", {
+        templateUrl: '../views/modal.html',
+        controller: 'DetailerListController'
+        //controllerAs: 'usershow'
+      }).
+      otherwise({
+        redirectTo: '/'
+      });
+}]);
 
 app.controller('UserController', function($scope, $http) {
   var name = $scope.loginuser;
@@ -44,9 +56,15 @@ app.controller('UserController', function($scope, $http) {
   });
 });
 
-app.controller('DetailerList', function($scope, $http) {
+app.controller('DetailerListController', function($scope, $http) {
   $http.get('/show-detailers').success(function(data) {
+    console.log(data)
     $scope.detailers = data;
+
   });
+  //$timeout(function(){
+  //  $dialog.dialog({}).open('../views/modal.html');
+  //}, 3000);
+
 });
 

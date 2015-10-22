@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="x-ua-compatible" content="IE=Edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WashMe</title>
+  <link href='https://fonts.googleapis.com/css?family=Arimo:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Fira+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <!-- bower:css -->
+  <!-- endbower -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+  <script src="https:////ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.7/angular-filter.min.js"></script>
+  <script src="ui-bootstrap-0.14.2.js"></script>
+
+
+</head>
+<body ng-app="carApp">
+<nav class="navbar wash-nav">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="navbar-brand" ><a href="/">WashMe</a></div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Features</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="/add-detailers.html">Add A Detailer</a></li>
+        <li class="wash-nav-buttons"><a href="/users/login">Log In</a></li>
+        <li class="wash-nav-buttons"><a href="#">Sign Up</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<section>
+  <div class="home-section">
+    <div class="home-inner">
+      <h1>Results</h1>
+    </div>
+  </div><!-- Home section -->
+</section>
+
+<section>
+  <div ng-controller="DetailerListController">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-md-6">
+                  <h3 class="panel-title">Search <input ng-model="query"></h3>
+                </div>
+                <div class="col-md-6">
+                  <select ng-model="location" ng-options="detailer.city for detailer in detailers | unique: 'city'">
+                    <option value="">Select City</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div id="start-results" class="result">
+                <div class="row result-block" ng-repeat="detailer in detailers | filter:query | filter:location">
+                  <div class="col-md-3 image">
+                    <div><img src="/uploads/carlos.jpg"></div>
+                  </div>
+                  <div class="col-md-6 name">
+                    <h2>{{detailer.first_name}}</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis mattis ligula vitae   sagittis. Aenean ac nisi lobortis, vestibulum odio ac, volutpat urna turpis duis.
+                    </p>
+                    <p>{{detailer.city}}</p>
+                    <p>{{detailer.rating}}</p>
+                    <p><a href="#/more-info" data-toggle="modal" data-target=".bs-example-modal-sm">More Info</a></p>
+                  </div>
+                  <div class="col-md-3 price">
+                    <p>Basic-Wash: ${{detailer.basic_wash}}</p>
+                    <p>Super-Wash: ${{detailer.super_wash}}</p>
+                    <p>Delxue-Wash: ${{detailer.deluxe_wash}}</p>
+                    <p><a href="#/book-now">Hire {{detailer.first_name}}</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <section>
+
+
+    <footer>
+      <a href="index.html">WashMe</a>
+      <p>Copyright 2015 &reg; | <a href="#">All Rights Reserved</a> | <a href="#">Privacy Policy</a></p>
+    </footer>
+    <!-- bower:js -->
+    <!-- endbower -->
+</body>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="angular.js"></script>
+<!--<script src="main.js"></script>-->
+<script src="jquery.js"></script>
+
+</html>
