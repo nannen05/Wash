@@ -1,5 +1,17 @@
 var app = angular.module('carApp', ['ngRoute', 'angular.filter', 'ui.bootstrap']);
 
+app.directive('filename', ['$timeout', function ($timeout) {
+  return {
+    link: function (scope, element, attrs) {
+      element.on('change', function  (evt) {
+        var files = evt.target.files;
+
+
+      });
+    }
+  }
+}]);
+
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
     .when("/login", {
@@ -58,7 +70,16 @@ app.controller('UserController', function($scope, $http) {
 });
 
 app.controller('AddDetailerController', function($scope, $http) {
+  var input = document.querySelector('input[type=file]');
+  var image = document.getElementById('picture');
+  function upload() {
+    var file = input.files[0].name;
+    console.log(file);
+    return file
+
+  }
   $scope.formData = {};
+  $scope.formData.image = $(image).change(upload);
   $scope.submitForm = function() {
     $http({
       method: 'POST',
