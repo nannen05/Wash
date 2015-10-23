@@ -39,7 +39,8 @@ app.controller('UserController', function($scope, $http) {
       rating : data[0].rating,
       basicwash : data[0].basic_wash,
       superwash : data[0].super_wash,
-      deluxewash : data[0].deluxe_wash
+      deluxewash : data[0].deluxe_wash,
+      img: data[0].img
       };
       $scope.submit = function () {
         $http({
@@ -56,15 +57,29 @@ app.controller('UserController', function($scope, $http) {
   });
 });
 
+app.controller('AddDetailerController', function($scope, $http) {
+  $scope.formData = {};
+  $scope.submitForm = function() {
+    $http({
+      method: 'POST',
+      url: '/add-detailers-1',
+      data: JSON.stringify($scope.formData)
+     }).success(function(data) {
+      console.log(data);
+    });
+
+  };
+});
+
 app.controller('DetailerListController', function($scope, $http) {
   $http.get('/show-detailers').success(function(data) {
-    console.log(data)
+    //console.log(data);
     $scope.detailers = data;
-
   });
-  //$timeout(function(){
-  //  $dialog.dialog({}).open('../views/modal.html');
-  //}, 3000);
-
 });
+
+
+
+
+
 

@@ -13,6 +13,11 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 var jsonParser = bodyParser.json();
 
+//test route
+dataStore.post('/add-detailers-1' ,jsonParser , function(req, res){
+  console.log('sent');
+});
+
 dataStore.post('/add-detailers' ,jsonParser , function(req, res){
   res.setHeader('Content-Type', 'application/json');
   var imagepath = req.body.image;
@@ -21,7 +26,6 @@ dataStore.post('/add-detailers' ,jsonParser , function(req, res){
     username: req.body.username,
     first_name: req.body.firstname,
     city: req.body.city,
-    rating: req.body.rating,
     basic_wash: req.body.basicwash,
     super_wash: req.body.superwash,
     deluxe_wash: req.body.deluxewash,
