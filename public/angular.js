@@ -81,7 +81,7 @@ app.controller('AddDetailerController', function($scope, $http) {
   $scope.submitForm = function() {
     $http({
       method: 'POST',
-      url: '/add-detailers-1',
+      url: '/add-detailers',
       data: JSON.stringify($scope.formData)
      }).success(function(data) {
       console.log(data);
