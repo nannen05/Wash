@@ -71,15 +71,13 @@ app.controller('UserController', function($scope, $http) {
 
 app.controller('AddDetailerController', function($scope, $http) {
   var input = document.querySelector('input[type=file]');
-  var image = document.getElementById('picture');
-  function upload() {
-    var file = input.files[0].name;
-    console.log(file);
-    return file
-
-  }
+  var image = '';
+  $(input).change(function() {
+    image = $(this).val();
+    console.log(image);
+    $scope.formData.image = image;
+    });
   $scope.formData = {};
-  $scope.formData.image = $(image).change(upload);
   $scope.submitForm = function() {
     $http({
       method: 'POST',
