@@ -5,11 +5,17 @@ var path = require('path');
 var imagesave = require('./routes/imagesave.js');
 var dataStore = require('./routes/db.js');
 
-//static routes
+//static routes to
 app.use('/' , imagesave);
 app.use('/', dataStore);
 app.use(express.static('./uploads'));
-app.use(express.static('./public/dist'));
+app.use(express.static('./public'));
+app.use(express.static('./public/views'));
 
-app.listen(1339);
-console.log('1339 is the magic port');
+
+app.get('/user', function(req, res){
+  res.send('hello world');
+});
+
+
+app.listen(process.env.port || 3000);
