@@ -9,9 +9,14 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+  <script src="https:////ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.7/angular-filter.min.js"></script>
+  <script src="ui-bootstrap-0.14.2.js"></script>
+
 </head>
-<body>
-<nav class="navbar wash-nav navbar-fixed-top ">
+<body ng-app="carApp">
+<nav class="navbar wash-nav">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -21,7 +26,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <div class="navbar-brand" ><a href="/">WashMe</a></div>
+      <div class="navbar-brand" ><a href="/">Wash</a></div>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -29,7 +34,7 @@
         <li><a href="#">Features</a></li>
         <li><a href="#">About</a></li>
         <li><a href="/add-detailers">Add A Detailer</a></li>
-        <li class="wash-nav-buttons"><a href="#">Log In</a></li>
+        <li class="wash-nav-buttons"><a href="/users/login">Log In</a></li>
         <li class="wash-nav-buttons"><a href="#">Sign Up</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -44,28 +49,29 @@
 </section>
 <section class="detailers">
   <div class="container">
-    <div class="add-detailer">
+    <div class="add-detailer" ng-controller="AddDetailerController">
       <h2>Please Fill Out Current Information</h2>
-      <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="text" required name="username" id="username" placeholder="Username"><br>
-        <input type="text" required name="firstname" id="firstname" placeholder="Name"><br>
-        <select id="detailer-city">
+      <form ng-submit="submitForm()">
+        <input type="text"  name="username" id="username" placeholder="Username" ng-model="formData.username"><br>
+        <input type="text"  name="firstname" id="firstname" placeholder="Name" ng-model="formData.firstname"><br>
+        <select id="detailer-city" ng-model="formData.city">
           <option value="Tustin">Tustin</option>
           <option value="Irvine">Irvine</option>
           <option value="Santa Ana">Santa Ana</option>
           <option value="Costa Mesa">Costa Mesa</option>
         </select>
-        <input type="file" required id="picture" name="uploadfile" accept="image/*">
-        <input type="text" required name="rating" id="rating" placeholder="Rating"><br>
-        <input type="text" required name="basicwash" id="basicwash" placeholder="Basic Wash"><br>
-        <input type="text" required id="superwash" placeholder="Super Wash"><br>
-        <input type="text" required id="deluxewash" placeholder="Deluxe Wash"><br>
-        <button id="submit" >Submit</button>
+        <input type="file" id="picture" name="uploadfile" accept="image/*" ng-submit="uploadImg()" filename>
+        <!--<input type="text" required name="rating" id="rating" placeholder="Rating"><br>-->
+        <input type="text" name="basicwash" id="basicwash" placeholder="Basic Wash" ng-model="formData.basicwash"><br>
+        <input type="text" id="superwash" placeholder="Super Wash" ng-model="formData.superwash"><br>
+        <input type="text"  id="deluxewash" placeholder="Deluxe Wash" ng-model="formData.deluxewash"><br>
+        <input type="submit" id="submit" value="Update" />
 
       </form>
-     </div>
+
+    </div>
   </div>
-  <div id="showdb"></div>
+
 </section>
 <footer>
   <a href="index.html">WashMe</a>
@@ -76,9 +82,9 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-<script src="public/main.js"></script>
+<!--<script src="public/main.js"></script>-->
 <script src="add-detailers.js"></script>
+<script src="angular.js"></script>
 <script>
   $(document).ready(function() {
     function setHeight() {

@@ -1,4 +1,21 @@
-<div id="userInfo">
-  Hello
-  {{user.username}}
+<div class="container">
+  <div class="add-detailer">
+    <div id="userInfo">
+      <form ng-submit="submit()">
+        <input type="text" ng-model="updatedUser.username" />
+        <p>Username: {{updatedUser.username}}</p>
+        <input type="text" ng-model="updatedUser.firstname" />
+        <p>Name: {{updatedUser.firstname}}</p>
+        <input type="text" ng-model="updatedUser.city" />
+        <p>City: {{updatedUser.city}}</p>
+        <input type="text" ng-model="updatedUser.basicwash" />
+        <p>Basic-Wash: ${{updatedUser.basicwash}}</p>
+        <input type="text" ng-model="updatedUser.superwash" />
+        <p>Super-Wash: ${{updatedUser.superwash}}</p>
+        <input type="text" ng-model="updatedUser.deluxewash" />
+        <p>Delxue-Wash: ${{updatedUser.deluxewash}}</p>
+        <input type="submit" id="submit" value="Update" />
+      </form>
+    </div>
+  </div>
 </div>

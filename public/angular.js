@@ -60,8 +60,7 @@ app.controller('UserController', function($scope, $http) {
           url: '/update/',
           params: {username: name},
           data: JSON.stringify($scope.updatedUser)
-          //headers : {'Content-Type': 'application/x-www-form-urlencoded'}
-        }).success(function(data) {})
+         }).success(function(data) {})
         };
       } else {
         alert('No User');
@@ -86,13 +85,11 @@ app.controller('AddDetailerController', function($scope, $http) {
      }).success(function(data) {
       console.log(data);
     });
-
   };
 });
 
 app.controller('DetailerListController', function($scope, $http) {
   $http.get('/show-detailers').success(function(data) {
-    //console.log(data);
     $scope.detailers = data;
   });
 });

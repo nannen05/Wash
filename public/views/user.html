@@ -11,17 +11,48 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
   <script src="https:////ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.7/angular-filter.min.js"></script>
+  <script src="../ui-bootstrap-0.14.2.js"></script>
 </head>
 <body ng-app="carApp">
-<a href="#/login">Login</a>
-
-<div ng-view></div>
-
-
-    <footer>
-      <a href="index.html">WashMe</a>
+<nav class="navbar wash-nav ">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="navbar-brand" ><a href="/">Wash</a></div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Features</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="/add-detailers.html">Add A Detailer</a></li>
+        <li class="wash-nav-buttons"><a href="/users/login">Log In</a></li>
+        <li class="wash-nav-buttons"><a href="#">Sign Up</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<section>
+  <div class="home-section">
+    <div class="home-inner">
+      <input type="text" class="login-user" placeholder="Username" ng-model="loginuser">
+      <h3><a href="#/login">Login</a></h3>
+    </div>
+  </div><!-- Home section -->
+</section>
+  <!-- -->
+  <div ng-view></div>
+  <footer>
+      <a href="index.html">Wash</a>
       <p>Copyright 2015 &reg; | <a href="#">All Rights Reserved</a> | <a href="#">Privacy Policy</a></p>
-    </footer>
+  </footer>
 
 </body>
 

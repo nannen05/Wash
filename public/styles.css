@@ -19,24 +19,26 @@ hr {
   margin-right: 0px!important;
 }
 
-
 /* NAV */
 .wash-nav {
-  /*background: transparent;*/
-  background-color: rgba(7, 7, 7, 0.0);
+  background: #fff;
+  /* background-color: rgba(7, 7, 7, 0.0); */
   border: none;
 }
 .wash-nav a {
-  color: #fff;
+  color: #339acc;
 }
 .navbar-brand {
   margin-top: 10px;
   font-size: 36px!important;
-  text-shadow: 5px 3px 5px rgba(0, 0, 0, 0.35);
+  /*text-shadow: 5px 3px 5px rgba(0, 0, 0, 0.35);*/
 }
 .navbar-right {
   /*margin: 38px 0px 0px -15px!important;*/
   margin: 19px 0px 15px -15px!important
+}
+.navbar {
+margin-bottom: -70px!important;
 }
 .nav-back {
   background-color: rgba(7, 7, 7, 0.8);
@@ -65,10 +67,16 @@ hr {
   webkit-box-shadow: none!important ;
   box-shadow: none!important ;
 }
-
+/* Results */
+.results-filter  {
+  padding-top: 5px;
+}
+h3.results-filter {
+  float: right;
+}
 /* HOme overlay*/
 .home-section {
-  background-image: url('/images/back.jpg');
+  background: #339acc;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -92,10 +100,10 @@ hr {
 .home-section-1 .home-inner {
   position: relative;
 }
-.home-inner{
+.home-inner.home-inner {
   position: absolute;
-  top: 25%;
-/* left: 50%; */
+  top: 15%;
+  /* left: 50%; */
   width: 100%;
 }
 .home-inner h1,
@@ -116,18 +124,19 @@ hr {
   margin-bottom: 20px;
 }
 .home-inner a {
-  color: #57e4a4;
+  color: #fff;
   display: block;
   text-align: center;
-  border: 1px solid #57e4a4;
+  border: 1px solid #fff;
   width: 140px;
   margin: 0 auto;
   padding: 5px;
 }
 .home-inner a:hover {
-  color: color: #fff!important;
+  color: #fff!important;
   background: #57e4a4!important;
   text-decoration: none;
+  border: 1px solid #57e4a4!important;
 }
 .home-section .home-overlay .search-field {
   padding: 10% 0 0 0;
@@ -186,9 +195,16 @@ hr {
   margin: 0 auto;
 }
 
+/*login in page*/
+.login-user {
+  max-width: 200px;
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+}
 /*wash types */
 section {
-  background-color: #efefef;
+  background-color: #e9eaed;
 }
 .wash-contain{
   margin: 35px auto;
@@ -208,16 +224,16 @@ section {
 .wash-type:last-of-type {
   margin: 0 0% 0 4%;
 }
-.wash-type a{
-  border: 3px solid #57e4a4;
+.wash-type a {
+  border: 3px solid #339acc;
   padding: 1% 10%;
   margin-top: 0px;
-  color: #57e4a4;
+  color: #339acc;
 }
 .wash-type a:hover {
-  background: #57e4a4;
+  background: #339acc;
   color: #fff!important;
-  border: 3px solid #57e4a4;
+  border: 3px solid #339acc;
 }
 
 .wash-type ul {
@@ -243,9 +259,9 @@ section {
 .city-type {
   background-color: #fff;
   border: 1px solid #888888;
-  padding: 8%;
+  padding: 7.2%;
   width: 75%;
-  margin: 1% auto 5% auto;
+  margin: 0% auto 5% auto;
 }
 #locations {
   display: block;
@@ -268,7 +284,7 @@ a.selectedcity:hover{
 }
 /*results */
 #start-results, .change-options {
-  width: 75%;
+  width: 90%;
   margin: 0 auto;
 }
 .change-options {
@@ -282,6 +298,15 @@ a.selectedcity:hover{
 .new-wash {
   float: left;
 }
+.panel-default {
+  border-color: #ddd;
+  margin-top: 20px;
+}
+.panel-default>.panel-heading {
+  color: #333;
+  background-color: #f5f5f5;
+  border-color: #339acc!important;
+}
 #results h1 {
   text-align: center;
   text-transform: uppercase;
@@ -289,32 +314,63 @@ a.selectedcity:hover{
 }
 .result-block {
   width: 100%;
-  border: 2px solid #666;
+  border: 1px solid #e9eaed;
   margin: 2% 0%;
-  background-color: #fff;
+  background-color: #f9f9f9;
 }
+.result-block .col-md-6{}
 .result-block:hover {
-  border: 2px solid #57e4a4;
+  border: 1px solid #339acc;
 }
-.image  img {
-  width: 100px;
-  margin-top: 10px;
+.image img {
+  width: 100%;
+  /* margin-top: 26px; */
   margin-bottom: 10px;
+  display: block;
+  margin: 20px auto;
+  padding: 10px;
+  background: #fff;
+  box-shadow: 0 0 5px #C3C3C3;
+  border-radius: 2px;
 }
 .name h2 {
-  margin-top: 48px;
+  margin-top: 20px;
 }
 .price p {
-  float: right;
-  font-size: 40px;
-  margin-top: 36px;
+  /* float: right; */
+  font-size: 16px;
+  margin-top: 10px;
   padding-right: 20px;
+  text-align: right;
+  padding-top: 0px;
+}
+.price p:first-of-type {
+  margin-top: 20px;
+}
+.price p:last-of-type{
+  margin-bottom: 20px;
+  padding-top: 5px;
 }
 .rating p img {
   width: 32px;
   float: left;
   margin-top:45px;
   margin-right:5px;
+}
+.price p a{
+  background: #57e4a4!important;
+  padding: 5px 20px;
+  color: #fff;
+  border-radius: 3px;
+}
+.price p a:hover {
+  color: #fff!important;
+}
+
+.price p span img{
+  width: 32px;
+  padding-right: 10px;
+  margin-top: -4px;
 }
 
 /* add detailer */
